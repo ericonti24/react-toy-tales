@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 
 class ToyCard extends Component {
 
+  handleDonate = (id) => {
+    this.props.onDonateToy(id)
+  }
+
+  handleLike = (toy) => {
+    this.props.onLikeToy(toy)
+  }
   render() {
+    const { toy } = this.props
+    const { name, image, likes, id } = toy
     return (
       <div className="card">
-        <h2>{'' /* Toy's Name */}</h2>
-        <img src={'' /* Toy's Image */} alt={'' /* Toy's Name */} className="toy-avatar" />
-        <p>{'' /* Toy's Likes */} Likes </p>
-        <button className="like-btn">Like {'<3'}</button>
-        <button className="del-btn">Donate to GoodWill</button>
+        <h2>{name}</h2>
+        <img src={image} alt={name} className="toy-avatar" />
+        <p>{likes} Likes </p>
+        <button onClick={() => this.handleLike(toy)} className="like-btn">Like {'<3'}</button>
+        <button onClick={() => this.handleDonate(id)} className="del-btn">Donate to GoodWill</button>
       </div>
     );
   }
